@@ -1,0 +1,8 @@
+This folder contains the dataset required to run the project.
+The actual data file (vector_64.npy) is NOT included in this submission
+as per the project instructions.
+
+To reproduce the results, place the following file in this directory:
+    vector_64.npy   (shape: 15000 × 64 × 64 × 2, ~1 GB)
+
+The dataset is available at the link provided in the project description.

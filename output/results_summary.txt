@@ -1,0 +1,34 @@
+====================================================================================================
+  ME5311 Project 2 — Results Summary
+====================================================================================================
+
+Dataset
+----------------------------------------------------------------------------------------------------
+  Spatial DOF          : 8,192  (64 × 64 × 2 components)
+  Total snapshots      : 15,000  (Δt = 0.2, span = 3000 t.u.)
+  Train / Val / Test   : 10,500 / 1,500 / 3,000  (70% / 10% / 20%)
+
+Dimensionality Reduction (POD)
+----------------------------------------------------------------------------------------------------
+  Modes retained       : 50
+  Cumulative energy    : 97.5574 %
+
+Prediction Results
+----------------------------------------------------------------------------------------------------
+  Method    Val RelErr  Test RelErr   Horizon(s)      RMSE     Corr       R2   Train(s)  Infer(ms/step)  Complexity (train/infer)
+  --------  ----------  -----------  -----------  --------  -------  -------  ---------  --------------  ------------------------
+  DMD           0.8841       0.8511         8.20    0.7169   0.5080   0.2481       0.26          0.0187  O(r²n + r³) / O(r²)
+  SINDy         1.2915       1.0543         7.20    0.9260   0.4489  -0.2544       0.62          0.0228  O(r²n) / O(r²)
+  LSTM          0.8207       1.0350         4.80    0.8938   0.3848  -0.1688      14.86          0.7098  O(E·n·s·h²) / O(s·h²)
+
+Notes
+----------------------------------------------------------------------------------------------------
+  Horizon    : time (s) at which relative error first exceeds 50 %.
+  RMSE / Corr: computed over the full test set (all snapshots).
+  Train(s)   : wall-clock seconds for model fitting.
+  Infer(ms)  : wall-clock milliseconds per predicted step (test set / nt_test).
+  Complexity : theoretical big-O for training / per-step inference.
+               r = POD modes, n = training snapshots.
+
+  Total wall-clock time : 1.9 min
+====================================================================================================
